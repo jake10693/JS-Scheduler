@@ -10,19 +10,23 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.static("public"));
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 // sets up handlebars
 // =============================================================
 const exphbs = require("express-handlebars")
-app.engine("handlebars", exphbs({ defaultLayout : "main"}))
+app.engine("handlebars", exphbs({
+  defaultLayout: "main"
+}))
 app.set("view engine", "handlebars")
 
 // Routes
 // =============================================================
 
 // API routes
-app.get("/api/notes", function(req, res) {
+app.get("/api/notes", function (req, res) {
   fs.readFile("./db/db.json", "utf-8", (err, data) => {
     const json = JSON.parse(data);
     console.log("data", json);
@@ -31,7 +35,7 @@ app.get("/api/notes", function(req, res) {
 });
 
 // add new note
-app.post("/api/notes", function(req, res) {
+app.post("/api/notes", function (req, res) {
   console.log(req.body);
   const newNote = req.body;
   // const parsedNote = JSON.stringify(newNote)
@@ -54,7 +58,7 @@ app.post("/api/notes", function(req, res) {
 });
 
 // DELETE NOTE
-app.delete("/api/notes/:id", function(req, res) {
+app.delete("/api/notes/:id", function (req, res) {
   // get id from note in db
   // if id matches delte
   const idToDelete = parseInt(req.params.id);
@@ -78,16 +82,16 @@ app.get("/api/notes", (req, res) => {
   fs.readFile("./db/db.json", "utf8", (err, data) => {});
 });
 // Basic route that sends the user first to the AJAX Page
-app.get("/notes", function(req, res) {
+app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
