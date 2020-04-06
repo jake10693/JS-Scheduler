@@ -1,8 +1,13 @@
+//dependencies
+//===========================================================
+
 const express = require("express")
+
+const exphbs = require("express-handlebars")
 
 const session = require("express-session")
 
-const passport =require("./config/passport")
+const passport = require("./config/passport")
 
 //Setting upour PORT and requiring models for syncing
 //=============================================================
@@ -18,11 +23,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // adding the middleware needed for authentication
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}));
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session())
+
 // sets up handlebars
 // =============================================================
+
+app.engine("handlebars", exphbs({ defaultLayout: "" }));
+app.set("view engine", "handlebars");
 
 
 // Routes required
@@ -34,8 +43,8 @@ require("./routes/api-routes.js")(app)
 //syncing our database and logginga message for the user upon success
 //===============================================================
 
-db.sequelize.sync().then(function(){
-  app.listen(PORT, function(){
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
     console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser", PORT, PORT)
   });
 });
