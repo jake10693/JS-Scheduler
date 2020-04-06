@@ -1,4 +1,95 @@
+:root {
+  --dark-blue-bg: #22303d;
+  --light-blue-txt: #34495e;
+  --light-grey-bg: #ecf0f1;
+  --dark-bg-txt: #fff;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 60px calc(100vh - 60px);
+  grid-template-areas:
+    "top-left top"
+    "side main";
+}
+
+.header {
+  grid-area: top;
+  background-color: #ffffff;
+}
+
+.header--text {
+  padding-left: 10px;
+  color: var(--light-blue-txt);
+}
+
+.top-left {
+  padding: 1rem;
+  grid-area: top-left;
+  background-color: var(--dark-blue-bg);
+  color: var(--dark-bg-txt);
+}
+
+.top-left h5 {
+  margin: 0;
+  font-weight: 300;
+  margin-left: 5px;
+}
+
+.top-left .logo-icon {
+  color: #f1c40f;
+}
+
+.left-side {
+  grid-area: side;
+  background-color: var(--dark-blue-bg);
+}
+
+.main-content {
+  grid-area: main;
+  background-color: var(--light-grey-bg);
+  border-top: 1.1px solid rgb(199, 199, 199);
+  overflow-y: scroll;
+}
+
+.collapsible{
+  box-shadow: none;
+  border: none;
+  margin-top: 0;
+}
+
+.collapsible-header {
+  border: none;
+  border-top: 1px solid var(--light-blue-txt);
+  border-bottom: 1px solid var(--light-blue-txt);
+  background-color: var(--dark-blue-bg);
+  color: var(--dark-bg-txt);
+  transition: ease-in-out .2s;
+}
+
+.collapsible-header:hover{
+  background-color: var(--light-blue-txt);
+}
+
+.collapsible-header .menu-icon {
+  margin-right: 5px;
+  font-size: 1.1rem;
+  line-height: 1.55rem;
+
+.collapsible-body{
+  border: none;
 }
