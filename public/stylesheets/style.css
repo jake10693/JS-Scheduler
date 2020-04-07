@@ -30,11 +30,16 @@ body {
 .header {
   grid-area: top;
   background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+  padding: 0;
 }
 
 .header--text {
-  padding-left: 10px;
   color: var(--light-blue-txt);
+  margin: 0;
 }
 
 .top-left {
@@ -50,7 +55,7 @@ body {
   margin-left: 5px;
 }
 
-.top-left .logo-icon {
+.logo-icon {
   color: #f1c40f;
 }
 

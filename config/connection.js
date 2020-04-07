@@ -8,14 +8,14 @@ if (process.env.JAWSDB_URL) {
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "Theking1@",
+    password: "",
     database: "js_scheduler_db"
   });
 }
 
 
 // Make connection.
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
