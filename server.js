@@ -9,9 +9,9 @@ const session = require("express-session")
 
 const passport = require("./config/passport")
 
-const path = require("path")
 
-// Setting upour PORT and requiring models for syncing
+
+//Setting upour PORT and requiring models for syncing
 // =============================================================
 const PORT = process.env.PORT || 4000;
 const db = require("./models")
@@ -39,6 +39,8 @@ app.set("view engine", "handlebars");
 
 
 
+app.use('/fullcalendar', express.static(__dirname + '/node_modules/@fullcalendar/'));
+
 
 // Routes required
 // =============================================================
@@ -51,7 +53,7 @@ require("./routes/api-routes.js")(app)
 
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
-    console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser", PORT, PORT)
+    console.log("==> Listening on port %s. Visit http://localhost:%s in your browser", PORT, PORT)
   });
 });
 
