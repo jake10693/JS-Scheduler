@@ -1,4 +1,4 @@
-//dependencies
+// Dependencies
 // ===========================================================
 
 const express = require("express")
@@ -9,7 +9,9 @@ const session = require("express-session")
 
 const passport = require("./config/passport")
 
-//Setting upour PORT and requiring models for syncing
+const path = require("path")
+
+// Setting upour PORT and requiring models for syncing
 // =============================================================
 const PORT = process.env.PORT || 4000;
 const db = require("./models")
@@ -22,17 +24,20 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// adding the middleware needed for authentication
+// Adding the middleware needed for authentication
 // ===========================================================
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session())
 
-// sets up handlebars
+// Sets up handlebars
 // =============================================================
 
-app.engine("handlebars", exphbs({ defaultLayout: "" }));
+app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
+app.get("/", function(req,res){
+  res.render("index")
+})
 
 
 // Routes required
