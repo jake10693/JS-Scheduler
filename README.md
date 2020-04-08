@@ -1,6 +1,6 @@
 # JS Scheduler
 
-As a manager of a company it is hard enough to maage employees schedules, changing start times
+As a manager of a company it is hard enough to manage employees schedules, changing start times
 and holiday requests make it dificult to keep track of it all, not anymore with JS Scheduler!
 Now with JS Scheduler its easier than ever to manage your staffing needs!!!
 
@@ -17,7 +17,7 @@ Now with JS Scheduler its easier than ever to manage your staffing needs!!!
 * mySql 
 * Sequelize
 
-Tech solutions for a complicate business environment!
+# Tech solutions for a complicated business environment!
 Authored by:
 
 * Jake Carver
