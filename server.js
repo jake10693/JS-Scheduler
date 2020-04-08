@@ -3,12 +3,6 @@
 
 const express = require("express")
 
-<<<<<<< HEAD
-// Sets up the Express App
-// =============================================================
-const PORT = process.env.PORT || 4000;
-const app = express();
-=======
 const exphbs = require("express-handlebars")
 
 const session = require("express-session")
@@ -23,7 +17,6 @@ const db = require("./models")
 // Setting up express app for data parsing
 //=============================================================
 const app = express()
->>>>>>> 710ec2bf5ea38e05be78fbb371a8d61b9833556f
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
