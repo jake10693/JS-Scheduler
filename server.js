@@ -40,14 +40,14 @@ app.get('/', function(req, res){
   res.render('index')
 })
 
+app.use('/fullcalendar', express.static(__dirname + '/node_modules/@fullcalendar/'));
+
 
 // Routes required
 // =============================================================
 
 require("./routes/html-routes.js")(app)
 require("./routes/api-routes.js")(app)
-
-app.use('/fullcalendar', express.static(__dirname + '/node_modules/@fullcalendar/'));
 
 // Syncing our database and logginga message for the user upon success
 // ===============================================================

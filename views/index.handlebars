@@ -1,6 +1,7 @@
 <div class="grid-container">
     <header class="header">
         <h5 class="header--text">Daily Schedule</h5>
+        <a href="/logout">Sign Out <i class="fas fa-sign-out-alt"></i></a>
     </header>
 
     <aside class="top-left">
@@ -45,14 +46,17 @@
     <main class="main-content">
         <div id='calendar'></div>
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid']
-            });
-            calendar.render();
-        });
-    </script>
 </div>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid']
+        });
+
+        calendar.render();
+    });
+
+</script>
