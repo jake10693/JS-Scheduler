@@ -31,8 +31,12 @@ app.use(passport.session())
 // sets up handlebars
 // =============================================================
 
-app.engine("handlebars", exphbs({ defaultLayout: "" }));
+app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
+
+app.get('/', function(req, res){
+  res.render('index')
+})
 
 
 // Routes required
