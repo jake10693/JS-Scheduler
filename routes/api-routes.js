@@ -51,6 +51,16 @@ module.exports = function (app) {
     }
   });
 
+  // GET route for getting all employees
+
+  app.get("/api/employee", function (req, res) {
+    db.employee.findAll({}).then(function (dbEmployee) {
+      res.json(dbEmployee);
+    })
+  });
+
+  //POST route for saving new employees
+
   app.post("/api/employee", function (req, res) {
     db.employee.create({
       name: req.body.name
@@ -63,27 +73,41 @@ module.exports = function (app) {
       });
   });
 
-  app.put("/api/employee", function(req, res){
+  //PUT route for updating employees
+
+  app.put("/api/employee", function (req, res) {
     db.employee.update({
       name: req.body.name
     }, {
-      where:{
+      where: {
         id: req.body.id
       }
-    }).then(function(dbEmployee){
+    }).then(function (dbEmployee) {
       res.json(dbEmployee)
     })
   });
 
-  app.delete("/api/employee/:id", function(req, res){
+  //DELETE route for deleting an employee
+
+  app.delete("/api/employee/:id", function (req, res) {
     db.employee.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbEmployee){
+    }).then(function (dbEmployee) {
       res.json(dbEmployee)
     })
   });
+
+  //GET route for getting all events
+
+  app.get("/api/event", function (req, res) {
+    db.event.findAll({}).then(function (dbEvent) {
+      res.json(dbEvent);
+    })
+  });
+
+  //POST route for saving new events
 
   app.post("/api/event", function (req, res) {
     db.event.create({
@@ -99,26 +123,29 @@ module.exports = function (app) {
       });
   });
 
-  app.put("/api/event", function(req, res){
+  //PUT route for updating all events
+
+  app.put("/api/event", function (req, res) {
     db.event.update({
       name: req.body.name
     }, {
-      where:{
+      where: {
         id: req.body.id
       }
-    }).then(function(dbEvent){
+    }).then(function (dbEvent) {
       res.json(dbEvent)
     })
   });
 
-  app.delete("/api/employee/:id", function(req, res){
+  //DELETE route for deleting events
+
+  app.delete("/api/event/:id", function (req, res) {
     db.event.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbEvent){
+    }).then(function (dbEvent) {
       res.json(dbEvent)
     })
   });
-
 };
