@@ -78,3 +78,7 @@ module.exports = function (app) {
   });
 
 };
+// .post = .create
+// .put = .update
+// .delete = .destroy
+//  .get = [findone, findall] where: ... res.json
