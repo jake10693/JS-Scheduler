@@ -1,7 +1,6 @@
 {
   "name": "1-Passport-Example",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
@@ -35,5 +34,14 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebigdeal916/project-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thebigdeal916/project-2/issues"
+  },
+  "homepage": "https://github.com/thebigdeal916/project-2#readme",
+  "description": ""
 }
