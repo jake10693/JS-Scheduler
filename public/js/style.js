@@ -57,13 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         title: 'data',
         url: "https://thebigdeal916.github.io/day-planner/",
-        start: '2020-04-13'
-      },
-      {
-        title: 'data',
-        url: "https://thebigdeal916.github.io/day-planner/",
         start: '2020-04-14',
-
       },
       {
         title: 'Click for Google',
