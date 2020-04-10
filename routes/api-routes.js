@@ -63,9 +63,31 @@ module.exports = function (app) {
       });
   });
 
+  app.put("/api/employee", function(req, res){
+    db.employee.update({
+      name: req.body.name
+    }, {
+      where:{
+        id: req.body.id
+      }
+    }).then(function(dbEmployee){
+      res.json(dbEmployee)
+    })
+  });
+
+  app.delete("/api/employee/:id", function(req, res){
+    db.employee.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbEmployee){
+      res.json(dbEmployee)
+    })
+  });
+
   app.post("/api/event", function (req, res) {
     db.event.create({
-      employeeId: req.body.employeeId,
+      employee_id: req.body.employee_id,
       startTime: req.body.startTime,
       endTime: req.body.endTime
     })
@@ -75,6 +97,28 @@ module.exports = function (app) {
       .catch(function (err) {
         res.status(401).json(err)
       });
+  });
+
+  app.put("/api/event", function(req, res){
+    db.event.update({
+      name: req.body.name
+    }, {
+      where:{
+        id: req.body.id
+      }
+    }).then(function(dbEvent){
+      res.json(dbEvent)
+    })
+  });
+
+  app.delete("/api/employee/:id", function(req, res){
+    db.event.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbEvent){
+      res.json(dbEvent)
+    })
   });
 
 };
