@@ -50,4 +50,31 @@ module.exports = function (app) {
       });
     }
   });
+
+  app.post("/api/employee", function (req, res) {
+    db.employee.create({
+      name: req.body.name
+    })
+      .then(function () {
+        res.redirect(307, "/");
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/event", function (req, res) {
+    db.event.create({
+      employeeId: req.body.employeeId,
+      startTime: req.body.startTime,
+      endTime: req.body.endTime
+    })
+      .then(function () {
+        res.redirect(307, "/")
+      })
+      .catch(function (err) {
+        res.status(401).json(err)
+      });
+  });
+
 };

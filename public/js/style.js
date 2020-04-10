@@ -55,8 +55,15 @@ document.addEventListener('DOMContentLoaded', function () {
         start: '2020-04-12T14:30:00'
       },
       {
-        title: 'Birthday Party',
-        start: '2020-04-13T07:00:00'
+        title: 'data',
+        url: "https://thebigdeal916.github.io/day-planner/",
+        start: '2020-04-13'
+      },
+      {
+        title: 'data',
+        url: "https://thebigdeal916.github.io/day-planner/",
+        start: '2020-04-14',
+
       },
       {
         title: 'Click for Google',
