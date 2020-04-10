@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
   //Materialize JS
-  const elems = document.querySelectorAll('.collapsible');
-  const instances = M.Collapsible.init(elems, 300);
+  const collapsible = document.querySelectorAll('.collapsible');
+  const collapsibleInstances = M.Collapsible.init(collapsible, 300);
+
+  const modal = document.querySelectorAll('.modal');
+  const modalInstances = M.Modal.init(modal, 300);
 
   //Calender JS
   var calendarEl = document.getElementById('calendar');

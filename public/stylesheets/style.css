@@ -1,7 +1,10 @@
 :root {
   --dark-blue: #22303d;
+  --dark-grey: #707d89;
   --light-blue: #34495e;
   --light-grey: #ecf0f1;
+  --events-blue: #3788d8;
+  --gold: #f1c40f;
 }
 
 *,
@@ -38,12 +41,13 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0 0;
-  padding: 0 10px;
+  padding: 0 24px;
 }
 
 .header--text {
-  color: var(--light-blue);
+  color: var(--dark-grey);
   margin: 0;
+  font-size: 1.5rem;
 }
 
 .top-left {
@@ -55,12 +59,12 @@ body {
 
 .top-left h5 {
   margin: 0;
-  font-weight: 300;
+  font-weight: 400;
   margin-left: 5px;
 }
 
 .logo-icon {
-  color: #f1c40f;
+  color: var(--gold);
 }
 
 .left-side {
@@ -88,6 +92,7 @@ body {
   background-color: var(--dark-blue);
   color: #fff;
   transition: ease-in-out .2s;
+  font-weight: 200;
 }
 
 .collapsible-header:hover{
@@ -98,7 +103,31 @@ body {
   margin-right: 5px;
   font-size: 1.1rem;
   line-height: 1.55rem;
+}
 
 .collapsible-body{
   border: none;
+  padding: 1rem 1rem 1rem 2rem;
+}
+
+.menu-link a{
+  color: #fff;
+  font-size: .93rem;
+}
+
+.menu-link a:hover{
+  color: var(--gold);
+}
+
+.modal .modal-footer {
+  padding: 0 24px;
+}
+
+.btn-custom {
+  background-color: var(--events-blue);
+}
+
+.btn-custom:hover {
+  background-color: var(--events-blue);
+  opacity: .9;
 }
