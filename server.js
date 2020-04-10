@@ -9,6 +9,8 @@ const session = require("express-session")
 
 const passport = require("./config/passport")
 
+const path = require('path')
+
 //Setting upour PORT and requiring models for syncing
 // =============================================================
 const PORT = process.env.PORT || 4000;
@@ -37,6 +39,8 @@ app.set("view engine", "handlebars");
 app.get('/', function(req, res){
   res.render('index')
 })
+
+app.use('/fullcalendar', express.static(__dirname + '/node_modules/@fullcalendar/'));
 
 
 // Routes required
