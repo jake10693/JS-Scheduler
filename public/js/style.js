@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = document.querySelectorAll('.modal');
   const modalInstances = M.Modal.init(modal, 300);
 
+  const select = document.querySelectorAll('select');
+  const selectInstances = M.FormSelect.init(select, 200);
+
   //Calender JS
   var calendarEl = document.getElementById('calendar');
 

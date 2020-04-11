@@ -28,6 +28,14 @@ module.exports = function (app) {
     res.render(path.join(__dirname, "../views/index.handlebars"));
   });
 
+  app.get("/profile", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/profile.handlebars"));
+  });
+
+  app.get("/all-employees", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/all-employees.handlebars"));
+  });
+
 };
 
 

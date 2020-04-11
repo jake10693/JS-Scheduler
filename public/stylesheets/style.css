@@ -48,6 +48,7 @@ body {
   color: var(--dark-grey);
   margin: 0;
   font-size: 1.5rem;
+  font-weight: 300;
 }
 
 .top-left {
@@ -59,8 +60,9 @@ body {
 
 .top-left h5 {
   margin: 0;
-  font-weight: 400;
+  font-weight: 300;
   margin-left: 5px;
+  color: #fff;
 }
 
 .logo-icon {
@@ -119,9 +121,10 @@ body {
   color: var(--gold);
 }
 
-.modal .modal-footer {
-  padding: 0 24px;
+.modal {
+  padding: 24px;
 }
+
 
 .btn-custom {
   background-color: var(--events-blue);
