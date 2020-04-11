@@ -9,11 +9,20 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
+      console.log("gimme a route")
       res.redirect("index");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
-
+  app.post("/", function (req, res) {
+    res.send("posted to route")
+  })
+  app.put("/", function(req, res){
+    res.send("employee updated")
+  })
+  app.delete("/", function(req, res){
+    res.send("employee deleted")
+  })
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -35,6 +44,9 @@ module.exports = function (app) {
   app.get("/all-employees", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/all-employees.handlebars"));
   });
+
+
+
 
 };
 
