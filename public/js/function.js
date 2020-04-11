@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     $("#save-1").click(function () {
@@ -8,13 +7,16 @@ $(document).ready(function () {
         $.ajax({
             url: "/api/employee",
             method: "POST",
-            data: { name: newName }
+            data: {
+                name: newName
+            }
         }).then(function (data) {
             clearText()
             console.log(data)
         })
     })
-    function clearText(){
+
+    function clearText() {
         $("#newName").val("")
     }
 
@@ -22,14 +24,19 @@ $(document).ready(function () {
         url: "/api/employee",
         method: "GET"
     }).then(function (data) {
-        $("#employee-select").empty()
-        for( var i = 0; i > data.length; i++ ){
-            $("#employee-select").append($("<option>").text(data[i]))
-        }
-       
-        console.log(data)
+
+        $('#employee-select')
+            .find('option')
+            .remove()
+
+
+        for (var i = 0; i > data.length; i++) {
+            $("#employee-select").append($("<option>").text(data[i].name))
+        };
+
+        console.log(data);
     })
-   
+
 
 
 
@@ -54,5 +61,3 @@ $(document).ready(function () {
 
 
 })
-
-
