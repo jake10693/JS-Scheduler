@@ -54,7 +54,7 @@ module.exports = function (app) {
   // GET route for getting all employees
 
   app.get("/api/employee", function (req, res) {
-    db.employee.findAll({}).then(function (dbEmployee) {
+    db.Employee.findAll({}).then(function (dbEmployee) {
       res.json(dbEmployee);
     })
   });
@@ -62,7 +62,8 @@ module.exports = function (app) {
   //POST route for saving new employees
 
   app.post("/api/employee", function (req, res) {
-    db.employee.create({
+    console.log(req.body)
+    db.Employee.create({
       name: req.body.name
     })
       .then(function () {
@@ -76,7 +77,7 @@ module.exports = function (app) {
   //PUT route for updating employees
 
   app.put("/api/employee", function (req, res) {
-    db.employee.update({
+    db.Employee.update({
       name: req.body.name
     }, {
       where: {
@@ -90,7 +91,7 @@ module.exports = function (app) {
   //DELETE route for deleting an employee
 
   app.delete("/api/employee/:id", function (req, res) {
-    db.employee.destroy({
+    db.Employee.destroy({
       where: {
         id: req.params.id
       }
@@ -102,7 +103,7 @@ module.exports = function (app) {
   //GET route for getting all events
 
   app.get("/api/event", function (req, res) {
-    db.event.findAll({}).then(function (dbEvent) {
+    db.events.findAll({}).then(function (dbEvent) {
       res.json(dbEvent);
     })
   });
@@ -110,7 +111,7 @@ module.exports = function (app) {
   //POST route for saving new events
 
   app.post("/api/event", function (req, res) {
-    db.event.create({
+    db.events.create({
       employee_id: req.body.employee_id,
       startTime: req.body.startTime,
       endTime: req.body.endTime
@@ -126,7 +127,7 @@ module.exports = function (app) {
   //PUT route for updating all events
 
   app.put("/api/event", function (req, res) {
-    db.event.update({
+    db.events.update({
       name: req.body.name
     }, {
       where: {
@@ -140,7 +141,7 @@ module.exports = function (app) {
   //DELETE route for deleting events
 
   app.delete("/api/event/:id", function (req, res) {
-    db.event.destroy({
+    db.events.destroy({
       where: {
         id: req.params.id
       }
