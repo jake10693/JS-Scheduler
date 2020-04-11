@@ -1,8 +1,10 @@
 :root {
-  --dark-blue-bg: #22303d;
-  --light-blue-txt: #34495e;
-  --light-grey-bg: #ecf0f1;
-  --dark-bg-txt: #fff;
+  --dark-blue: #22303d;
+  --dark-grey: #707d89;
+  --light-blue: #34495e;
+  --light-grey: #ecf0f1;
+  --events-blue: #3788d8;
+  --gold: #f1c40f;
 }
 
 *,
@@ -19,6 +21,11 @@ form.login {
 }
 
 body {
+  min-height: 100vh;
+  background-color: var(--light-grey);
+}
+
+.grid-container {
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-template-rows: 60px calc(100vh - 60px);
@@ -30,40 +37,48 @@ body {
 .header {
   grid-area: top;
   background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0;
+  padding: 0 24px;
 }
 
 .header--text {
-  padding-left: 10px;
-  color: var(--light-blue-txt);
+  color: var(--dark-grey);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
 .top-left {
   padding: 1rem;
   grid-area: top-left;
-  background-color: var(--dark-blue-bg);
-  color: var(--dark-bg-txt);
+  background-color: var(--dark-blue);
+  color: #fff;
 }
 
 .top-left h5 {
   margin: 0;
   font-weight: 300;
   margin-left: 5px;
+  color: #fff;
 }
 
-.top-left .logo-icon {
-  color: #f1c40f;
+.logo-icon {
+  color: var(--gold);
 }
 
 .left-side {
   grid-area: side;
-  background-color: var(--dark-blue-bg);
+  background-color: var(--dark-blue);
 }
 
 .main-content {
   grid-area: main;
-  background-color: var(--light-grey-bg);
   border-top: 1.1px solid rgb(199, 199, 199);
   overflow-y: scroll;
+  padding: 40px;
 }
 
 .collapsible{
@@ -74,22 +89,48 @@ body {
 
 .collapsible-header {
   border: none;
-  border-top: 1px solid var(--light-blue-txt);
-  border-bottom: 1px solid var(--light-blue-txt);
-  background-color: var(--dark-blue-bg);
-  color: var(--dark-bg-txt);
+  border-top: 1px solid var(--light-blue);
+  border-bottom: 1px solid var(--light-blue);
+  background-color: var(--dark-blue);
+  color: #fff;
   transition: ease-in-out .2s;
+  font-weight: 200;
 }
 
 .collapsible-header:hover{
-  background-color: var(--light-blue-txt);
+  background-color: var(--light-blue);
 }
 
 .collapsible-header .menu-icon {
   margin-right: 5px;
   font-size: 1.1rem;
   line-height: 1.55rem;
+}
 
 .collapsible-body{
   border: none;
+  padding: 1rem 1rem 1rem 2rem;
+}
+
+.menu-link a{
+  color: #fff;
+  font-size: .93rem;
+}
+
+.menu-link a:hover{
+  color: var(--gold);
+}
+
+.modal {
+  padding: 24px;
+}
+
+
+.btn-custom {
+  background-color: var(--events-blue);
+}
+
+.btn-custom:hover {
+  background-color: var(--events-blue);
+  opacity: .9;
 }

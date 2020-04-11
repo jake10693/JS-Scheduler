@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <link rel="stylesheet" href="./stylesheets/materialize.css" media="screen,projection" />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link href='fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <title>JS Scheduler</title>
+</head>
+
+<body>
+    <div class="grid-container">
+        <header class="header">
+            <h5 class="header--text">Monthly Schedule</h5>
+            <a href="/logout">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+        </header>
+
+        <aside class="top-left">
+            <a href="/members">
+                <h5><i class="fab fa-node-js logo-icon"></i> Scheduler</h5>
+            </a>
+        </aside>
+
+        <aside class="left-side">
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header"><i class="menu-icon fas fa-calendar-week"></i>Schedule</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li class="menu-link"><a href="/members"><i class="fas fa-angle-right"></i> View
+                                    Calendar</a></li>
+                            <li class="menu-link" data-target="addNewEvent"><a class="modal-trigger"
+                                    href="#addNewEvent"><i class="fas fa-angle-right"></i> Add New</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="menu-icon fas fa-users"></i>Employees</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li class="menu-link" data-target="addNewModal"><a class="modal-trigger"
+                                    href="#addNewModal"><i class="fas fa-angle-right" id="add-new"></i> Add New</a></li>
+                            <li class="menu-link"><a href="/all-employees"><i class="fas fa-angle-right" id="view-all"></i> View
+                                    All</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="menu-icon fas fa-sliders-h"></i>Settings</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li class="menu-link" data-target="addNewModal"><a class="modal-trigger" href="/profile"><i
+                                        class="fas fa-angle-right"></i> Edit Profile</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            {{{body}}}
+        </main>
+
+        <div class="modals">
+            <!-- Add a new employee-->
+            <div id="addNewModal" class="modal">
+                <div class="modal-content">
+                    <h4>New Employee</h4>
+                    <label for="newName">Name<input type="text" id="newName"></label>
+                </div>
+                <div class="modal-footer">
+                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-1">cancel</button>
+                    <button class="btn btn-custom waves-effect waves-light modal-close" id="save-1">save & close</button>
+                </div>
+            </div>
+
+            <!-- Add an existing employee to schedule-->
+            <div id="addNewEvent" class="modal">
+                <div class="modal-content">
+                    <h4>New Schedule</h4>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field col s12">
+                                <select id="employee-select">
+                                    <option value="" selected>Select an employee</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                                <label>Employee</label>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" selected>Start</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                                <label>Start Date/Time</label>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" selected>End</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                                <label>End Date/Time</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-2">cancel</button>
+                    <button class="btn btn-custom waves-effect waves-light modal-close" id="save-2">save & close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src='fullcalendar/core/main.js'></script>
+    <script src='fullcalendar/daygrid/main.js'></script>
+    <script src="./js/materialize.js"></script>
+    <script src="./js/style.js"></script>
+    <script src="./js/function.js"></script>
+
+</body>
+
+</html>
