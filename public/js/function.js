@@ -25,9 +25,8 @@ $(document).ready(function () {
         method: "GET"
     }).then(function (data) {
 
-        $('#employee-select')
-            .find('option')
-            .remove()
+        $('#employee-select').empty()
+            
 
 
         for (var i = 0; i > data.length; i++) {
