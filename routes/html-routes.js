@@ -17,9 +17,8 @@ module.exports = function (app) {
   app.post("/", function (req, res) {
     res.send("posted to route")
   })
-  app.post("/events", function (req, res) {
-    res.send("posted to route")
-  })
+  
+ 
 
  
   app.get("/login", function (req, res) {
@@ -43,6 +42,10 @@ module.exports = function (app) {
   app.get("/all-employees", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/all-employees.handlebars"));
   });
+  app.get("/main", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/layouts/main.handlebars"));
+  });
+
 
 
 
