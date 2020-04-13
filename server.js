@@ -48,7 +48,7 @@ app.use('/fullcalendar', express.static(__dirname + '/node_modules/@fullcalendar
 require("./routes/html-routes.js")(app)
 require("./routes/api-routes.js")(app)
 
-// Syncing our database and logginga message for the user upon success
+// Syncing our database and logging a message for the user upon success
 // ===============================================================
 
 db.sequelize.sync().then(function () {
