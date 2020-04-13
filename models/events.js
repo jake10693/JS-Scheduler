@@ -8,12 +8,12 @@ module.exports = function(sequelize, DataTypes) {
   
       },
       startTime: {
-          type: DataTypes.DATE,
+          type: DataTypes.INTEGER,
           allowNull: false
         
       },
       endTime: {
-          type: DataTypes.DATE,
+          type: DataTypes.INTEGER,
           allowNull: false
       }
     
