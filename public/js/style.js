@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
-    schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-    plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+    plugins: [  'dayGrid', 'timeGrid', 'list' ],
     defaultView: 'dayGridMonth',
     defaultDate: '2020-04-07',
     header: {
