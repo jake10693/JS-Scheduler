@@ -17,12 +17,11 @@ module.exports = function (app) {
   app.post("/", function (req, res) {
     res.send("posted to route")
   })
-  app.put("/", function(req, res){
-    res.send("employee updated")
+  app.post("/events", function (req, res) {
+    res.send("posted to route")
   })
-  app.delete("/", function(req, res){
-    res.send("employee deleted")
-  })
+
+ 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {

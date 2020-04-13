@@ -1,8 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-    var events = sequelize.define("event", {
-      // Creating the day table
-      employee_id: {
-        type: DataTypes.INTEGER,
+    var events = sequelize.define("events", {
+      // Creating the start time table
+      name: {
+        type: DataTypes.STRING,
         allowNull: false,
         unique: false
   
