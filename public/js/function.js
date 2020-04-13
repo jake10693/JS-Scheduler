@@ -15,8 +15,8 @@ $(document).ready(function () {
     });
     $("#save-2").click(function () {
         var employeeSelect = $("#employee-select").val().trim();
-        var startTime = $("#start-time").val()
-        var endTime = $("#end-time").val()
+        var startTime = $("#start-time").val().trim()
+        var endTime = $("#end-time").val().trim()
 
         $.ajax({
             url: "/api/events",
