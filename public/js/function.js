@@ -24,6 +24,13 @@ $(document).ready(function () {
         url: "/api/employee",
         method: "GET"
     }).then(function (data) {
+        $("#employee-select").empty()
+        for( var i = 0; i > data.length; i++ ){
+            $("#employee-select").append($("<option>").text(data[i].name))
+        }
+        console.log(data)
+    })
+   
 
         $('#employee-select').empty()
             
@@ -59,4 +66,3 @@ $(document).ready(function () {
 
 
 
-})
