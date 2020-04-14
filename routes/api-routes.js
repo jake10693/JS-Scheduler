@@ -102,31 +102,36 @@ module.exports = function (app) {
 
   //GET route for getting all events
 
-  app.get("/api/event", function (req, res) {
+  app.get("/api/events", function (req, res) {
     db.events.findAll({}).then(function (dbEvent) {
       res.json(dbEvent);
     })
   });
 
-  //POST route for saving new events
 
-  app.post("/api/event", function (req, res) {
-    db.events.create({
-      employee_id: req.body.employee_id,
+
+  //POST route for saving new events
+  app.post("/api/events", function (req, res) {
+    console.log(req.body)
+    const event = {
+      name: req.body.name,
       startTime: req.body.startTime,
       endTime: req.body.endTime
-    })
+    }
+    db.events.create(event)
       .then(function () {
         res.redirect(307, "/")
       })
       .catch(function (err) {
-        res.status(401).json(err)
+        console.log(err)
       });
   });
 
+
   //PUT route for updating all events
 
-  app.put("/api/event", function (req, res) {
+  app.put("/api/events", function (req, res) {
+    console.log(req.body)
     db.events.update({
       name: req.body.name
     }, {
@@ -140,8 +145,18 @@ module.exports = function (app) {
 
   //DELETE route for deleting events
 
-  app.delete("/api/event/:id", function (req, res) {
+  app.delete("/api/events/:id", function (req, res) {
+    console.log(req.params)
     db.events.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbEvent) {
+      res.json(dbEvent)
+    })
+  });
+  app.get("/api/events/:id", function (req, res) {
+    db.events.findOne({
       where: {
         id: req.params.id
       }

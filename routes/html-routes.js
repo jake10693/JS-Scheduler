@@ -17,12 +17,10 @@ module.exports = function (app) {
   app.post("/", function (req, res) {
     res.send("posted to route")
   })
-  app.put("/", function(req, res){
-    res.send("employee updated")
-  })
-  app.delete("/", function(req, res){
-    res.send("employee deleted")
-  })
+  
+ 
+
+ 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -44,6 +42,10 @@ module.exports = function (app) {
   app.get("/all-employees", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/all-employees.handlebars"));
   });
+  app.get("/main", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/layouts/main.handlebars"));
+  });
+
 
 
 
