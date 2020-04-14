@@ -44,34 +44,39 @@ $(document).ready(function () {
         url: "/api/employee",
         method: "GET"
     }).then(function (data) {
+
         $("#employee-select").empty();
 
-        for (var i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             let name = data[i].name;
             $("#employee-select").append($(`<option value=${name}>${name}</option>`));
         }
-
         $("#employee-select").formSelect();
     });
 
+    function viewAllEmployees(){
+        $.ajax({
+            url: "/api/employee",
+            method: "GET"
+        }).then(function (data) {
+    
+            $(".tbody").empty();
+    
+            for (let i = 0; i < data.length; i++) {
+                let id = data[i].id;
+                let name = data[i].name;
+                $(`<tr>
+                <td>${id}</td>
+                <td>${name}</td>
+                <td><button id="${id}" class="btn-custom waves-effect waves-light btn-small">Edit</button></td>
+                </tr>`)
+                .appendTo(".tbody")
+            }
+        })
+    };
 
+   viewAllEmployees();
 
+    
 
-    //$("#view-all").click(function () {
-
-
-
-    //$.ajax({
-    //url: "/api/employee",
-    // method: "GET",
-    //}).then(function (data) {
-    // console.log("fuck")
-    // $(".all-employees").empty();
-
-    // for (var i = 0; i < data.length; i++) {
-    // $(".all-employees").append($(`<td value=${name}>${name}</td>`))
-    // }
-    //$(".all-employees").formSelect()
-    // })
-    // })
-});
+}); //End of Document load Function
