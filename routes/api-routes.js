@@ -107,6 +107,7 @@ module.exports = function (app) {
       res.json(dbEvent);
     })
   });
+  
   app.post("/api/events", function (req, res) {
     console.log(req.body)
     const event = {

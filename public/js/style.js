@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const select = document.querySelectorAll('select');
   const selectInstances = M.FormSelect.init(select, 200);
 
+
+  $('.datepicker').datepicker();
   //Calender JS
   var calendarEl = document.getElementById('calendar');
 
@@ -20,8 +22,29 @@ document.addEventListener('DOMContentLoaded', function () {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    }
-   
+    },
+    events: [
+      {
+        groupId: 'blueEvents', // recurrent events in this group move together
+        daysOfWeek: [ '4' ],
+        startTime: '10:45:00',
+        endTime: '12:45:00'
+      },
+      {
+        daysOfWeek: [ '3' ], // these recurrent events move separately
+        startTime: '11:00:00',
+        endTime: '11:30:00',
+        color: 'red'
+      },
+      {
+        id: "1",
+        title: "Employee One 9AM - 10PM",
+        start: "2020-04-14",
+        end: "2020-04-16",
+        color: "yellow",
+      }
+    ],
+    editable: true
   });
 
   calendar.render();

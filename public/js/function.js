@@ -9,10 +9,11 @@ $(document).ready(function () {
                 name: newName
             }
         }).then(function (data) {
-            clearText();
-            console.log(data);
+            clearText()
+            viewAllEmployees()
         });
     });
+    
     $("#save-2").click(function () {
         var employeeSelect = $("#employee-select").val().trim();
         var startTime = $("#start-time").val().trim()
@@ -77,6 +78,17 @@ $(document).ready(function () {
 
    viewAllEmployees();
 
+   function renderCalenderEvents(){
+    $.ajax({
+        url: "/api/events",
+        method: "GET"
+    }).then(function (data) {
+        console.log(data)
+    });
+   }
     
+   renderCalenderEvents()
+
+   
 
 }); //End of Document load Function
