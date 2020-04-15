@@ -37,8 +37,6 @@ app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
 
-
-
 app.use('/fullcalendar', express.static(__dirname + '/node_modules/@fullcalendar/'));
 
 
@@ -52,9 +50,8 @@ require("./routes/api-routes.js")(app)
 // ===============================================================
 // Drop & Rebuild Tables use {force: true}
 
-db.sequelize.sync({force: true}).then(function () {
+db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log("==> Listening on port %s. Visit http://localhost:%s in your browser", PORT, PORT)
   });
 });
-
