@@ -103,16 +103,20 @@ module.exports = function (app) {
   //GET route for getting all events
 
   app.get("/api/events", function (req, res) {
-    db.vents.findAll({}).then(function (dbEvent) {
+    db.events.findAll({}).then(function (dbEvent) {
       res.json(dbEvent);
     })
   });
+
+
+
+  //POST route for saving new events
   app.post("/api/events", function (req, res) {
     console.log(req.body)
     const event = {
-    name: req.body.name,
-    startTime: req.body.startTime,
-    endTime: req.body.endTime
+      name: req.body.name,
+      startTime: req.body.startTime,
+      endTime: req.body.endTime
     }
     db.events.create(event)
       .then(function () {
@@ -123,22 +127,6 @@ module.exports = function (app) {
       });
   });
 
-  //POST route for saving new events
-
-  //app.post("/api/events", function (req, res) {
-    //console.log(req.body)
-    //db.events.create({
-      //name: req.body.name,
-      //startTime: req.body.startTime,
-      //endTime: req.body.endTime
-    //})
-      //.then(function () {
-        //res.redirect(307, "/")
-      //})
-      //.catch(function (err) {
-        //res.status(401).json(err)
-      //});
-  //});
 
   //PUT route for updating all events
 
@@ -160,6 +148,15 @@ module.exports = function (app) {
   app.delete("/api/events/:id", function (req, res) {
     console.log(req.params)
     db.events.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbEvent) {
+      res.json(dbEvent)
+    })
+  });
+  app.get("/api/events/:id", function (req, res) {
+    db.events.findOne({
       where: {
         id: req.params.id
       }

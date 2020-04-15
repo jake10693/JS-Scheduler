@@ -10,7 +10,7 @@ $(document).ready(function () {
             }
         }).then(function (data) {
             clearText();
-            console.log(data);
+            viewAllEmployees()
         });
     });
     $("#save-2").click(function () {
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
         }).then(function (data) {
             clearText();
-            console.log(data);
+            viewAllEmployees()
         });
 
 
@@ -54,29 +54,62 @@ $(document).ready(function () {
         $("#employee-select").formSelect();
     });
 
-    function viewAllEmployees(){
+    function viewAllEmployees() {
         $.ajax({
-            url: "/api/employee",
+            url: "/api/events",
             method: "GET"
         }).then(function (data) {
-    
+
             $(".tbody").empty();
-    
+
             for (let i = 0; i < data.length; i++) {
                 let id = data[i].id;
                 let name = data[i].name;
+                let startTime = data[i].startTime;
+                let endTime = data[i].endTime;
                 $(`<tr>
                 <td>${id}</td>
                 <td>${name}</td>
-                <td><button id="${id}" class="btn-custom waves-effect waves-light btn-small">Edit</button></td>
+                <td>${startTime}</td>
+                <td>${endTime}</td>
+                <td><button id="edit" class="btn-custom waves-effect waves-light btn-small">Edit</button>
+                <button id="${id}" class="delete btn-custom waves-effect waves-light btn-small">Delete</button></td>
                 </tr>`)
-                .appendTo(".tbody")
+                    .appendTo(".tbody")
             }
         })
+     
     };
+    $(document).on("click", "#edit", function(event){
+        console.log("im clicked")
+        let selected = event.target.id
+        $.ajax({
+            url: "/api/events/",
+            method: "PUT",
+            data: ({id: selected, name:true})
+        }).then(function(){
+            renderAll()
+        })
+     
+    })
+    $(document).on("click", ".delete", function(event){
+        console.log("clicked")
+        let id = event.target.id
+        $.ajax({
+            url: "/api/events/" + id,
+            method: "DELETE"
 
-   viewAllEmployees();
+        }).then(()=>{
+            viewAllEmployees();
+        })
+      
+     
+    })
 
-    
+    viewAllEmployees();
+
+ 
+
+
 
 }); //End of Document load Function
