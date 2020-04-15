@@ -107,16 +107,16 @@ module.exports = function (app) {
       res.json(dbEvent);
     })
   });
-
-
-
-  //POST route for saving new events
+  
   app.post("/api/events", function (req, res) {
     console.log(req.body)
-    const event = {
+    const event = {    
       name: req.body.name,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
       startTime: req.body.startTime,
-      endTime: req.body.endTime
+      endTime: req.body.endTime,
+      color: req.body.color
     }
     db.events.create(event)
       .then(function () {
@@ -155,6 +155,7 @@ module.exports = function (app) {
       res.json(dbEvent)
     })
   });
+  
   app.get("/api/events/:id", function (req, res) {
     db.events.findOne({
       where: {

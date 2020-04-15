@@ -45,7 +45,7 @@ body {
 }
 
 .header--text {
-  color: var(--dark-grey);
+  color: #000;
   margin: 0;
   font-size: 1.5rem;
   font-weight: 300;

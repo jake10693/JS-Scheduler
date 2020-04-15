@@ -1,7 +1,9 @@
 $(document).ready(function () {
-    $("#save-1").click(function () {
-        var newName = $("#newName").val().trim();
-
+   
+    $("#save-empl").click(function () {
+        
+        var newName = $("#new-name").val();
+       
         $.ajax({
             url: "/api/employee",
             method: "POST",
@@ -9,107 +11,143 @@ $(document).ready(function () {
                 name: newName
             }
         }).then(function (data) {
-            clearText();
-            viewAllEmployees()
+            clearAdd();
+            renderAllSchedules();
+            renderEmployeeSelects();
+            renderAllEmployees();
         });
     });
-    $("#save-2").click(function () {
-        var employeeSelect = $("#employee-select").val().trim();
-        var startTime = $("#start-time").val().trim()
-        var endTime = $("#end-time").val().trim()
 
+    $("#save-sched").click(function () {
+        let employeeSelect = $("#employee-select option:selected").text()
+        let startDate = $("#start-date").val()
+        let endDate = $("#end-date").val()
+        let startTime = $("#start-time").val()
+        let endTime = $("#end-time").val()
+        let color = $("#color-option option:selected").attr('value')
+        
         $.ajax({
             url: "/api/events",
             method: "POST",
             data: {
-
                 name: employeeSelect,
+                startDate: startDate,
+                endDate: endDate,
                 startTime: startTime,
-                endTime: endTime
+                endTime: endTime,
+                color: color
             }
-
         }).then(function (data) {
             clearText();
-            viewAllEmployees()
+            renderAllSchedules();
         });
-
-
     });
 
-    function clearText() {
-        $("#newName").val("");
+    $(document).on("click", ".delete-btn", function (event) {
+        let id = event.target.id
+        $.ajax({
+            url: "/api/events/" + id,
+            method: "DELETE"
+        }).then(() => {
+            renderAllSchedules();
+        })
+    });
+
+    $(document).on("click", "#cancel-add", clearAdd)
+
+    function clearAdd(){
+        $("#new-name").val("");
     }
 
-    $.ajax({
-        url: "/api/employee",
-        method: "GET"
-    }).then(function (data) {
+    function clearText() {
+        $("#start-date").val("");
+        $("#end-date").val("");
+        $("#start-time").val("");
+        $("#end-time").val("");
+    }
 
-        $("#employee-select").empty();
+    function renderEmployeeSelects(){
+        $.ajax({
+            url: "/api/employee",
+            method: "GET"
+        }).then(function (data) {
+    
+            $("#employee-select").empty();
+    
+            for (let i = 0; i < data.length; i++) {
+                let name = data[i].name;
+                $(`<option value="${name}">${name}</option>`).appendTo('#employee-select')
+            }
+            $("#employee-select").formSelect();
+        });
+    }
 
-        for (let i = 0; i < data.length; i++) {
-            let name = data[i].name;
-            $("#employee-select").append($(`<option value=${name}>${name}</option>`));
-        }
-        $("#employee-select").formSelect();
-    });
-
-    function viewAllEmployees() {
+    function renderAllSchedules() {
+        
         $.ajax({
             url: "/api/events",
             method: "GET"
         }).then(function (data) {
 
             $(".tbody").empty();
-
+            
             for (let i = 0; i < data.length; i++) {
                 let id = data[i].id;
                 let name = data[i].name;
                 let startTime = data[i].startTime;
                 let endTime = data[i].endTime;
+                let startDate = data[i].startDate;
+                let endDate = data[i].endDate;
+                
                 $(`<tr>
-                <td>${id}</td>
                 <td>${name}</td>
-                <td>${startTime}</td>
-                <td>${endTime}</td>
-                <td><button id="edit" class="btn-custom waves-effect waves-light btn-small">Edit</button>
-                <button id="${id}" class="delete btn-custom waves-effect waves-light btn-small">Delete</button></td>
+                <td>${startDate} ${startTime}</td>
+                <td>${endDate} ${endTime}</td>
+                <td class="right-align">
+                <button id="${id}" class="delete-btn btn-custom waves-effect waves-light btn-small">Delete</button>
+                </td>
                 </tr>`)
-                    .appendTo(".tbody")
+                .appendTo(".tbody")
             }
         })
-     
     };
-    $(document).on("click", "#edit", function(event){
-        console.log("im clicked")
-        let selected = event.target.id
+
+    function renderAllEmployees() {
         $.ajax({
-            url: "/api/events/",
-            method: "PUT",
-            data: ({id: selected, name:true})
-        }).then(function(){
-            renderAll()
+            url: "/api/employee",
+            method: "GET"
+        }).then(function (data) {
+
+            $("#tbody-edit").empty();
+
+            for (let i = 0; i < data.length; i++) {
+                let id = data[i].id;
+                let name = data[i].name;
+                
+                $(`<tr>
+                <td>${name}</td>
+                <td class="right-align">
+                <button id="${id}" class="delete-Edt btn-custom waves-effect waves-light btn-small">Delete</button>
+                </td>
+                </tr>`)
+                .appendTo("#tbody-edit")
+            }
         })
-     
-    })
-    $(document).on("click", ".delete", function(event){
-        console.log("clicked")
+    };
+
+    $(document).on("click", ".delete-Edt", function (event) {
         let id = event.target.id
         $.ajax({
-            url: "/api/events/" + id,
+            url: "/api/employee/" + id,
             method: "DELETE"
-
-        }).then(()=>{
-            viewAllEmployees();
+        }).then(() => {
+            renderAllEmployees();
         })
-      
-     
-    })
+    });
 
-    viewAllEmployees();
-
- 
-
-
-
+    //Call functions on page load
+    renderAllSchedules();
+    renderEmployeeSelects();
+    renderAllEmployees()
+    
 }); //End of Document load Function
