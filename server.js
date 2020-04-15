@@ -50,6 +50,7 @@ require("./routes/api-routes.js")(app)
 
 // Syncing our database and logging a message for the user upon success
 // ===============================================================
+// Drop & Rebuild Tables use {force: true}
 
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {

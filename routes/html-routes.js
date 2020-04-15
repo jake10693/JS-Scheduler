@@ -9,18 +9,15 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      console.log("gimme a route")
       res.redirect("index");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
+  
   app.post("/", function (req, res) {
     res.send("posted to route")
   })
-  
- 
 
- 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -46,8 +43,13 @@ module.exports = function (app) {
     res.render(path.join(__dirname, "../views/layouts/main.handlebars"));
   });
 
+  app.get("/edit-employees", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/edit-employees.handlebars"));
+  });
 
-
+  app.get("/new-schedule", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/new-schedule.handlebars"));
+  });
 
 
 };

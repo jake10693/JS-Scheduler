@@ -7,6 +7,16 @@ module.exports = function(sequelize, DataTypes) {
         unique: false
   
       },
+      startDate: {
+          type: DataTypes.STRING,
+          allowNull: false
+        
+      },
+      endDate: {
+          type: DataTypes.STRING,
+          allowNull: false
+        
+      },
       startTime: {
           type: DataTypes.STRING,
           allowNull: false
@@ -15,6 +25,10 @@ module.exports = function(sequelize, DataTypes) {
       endTime: {
           type: DataTypes.STRING,
           allowNull: false
+      },
+      color: {
+          type: DataTypes.STRING,
+          allowNull: true
       }
     
     });
