@@ -1,7 +1,5 @@
 $(document).ready(function () {
    
-    var calendarEl = document.getElementById('calendar');
-
     $("#save-empl").click(function () {
         
         var newName = $("#new-name").val();
@@ -13,8 +11,10 @@ $(document).ready(function () {
                 name: newName
             }
         }).then(function (data) {
-            clearText();
+            clearAdd();
             renderAllSchedules();
+            renderEmployeeSelects();
+            renderAllEmployees();
         });
     });
 
@@ -44,55 +44,30 @@ $(document).ready(function () {
         });
     });
 
-    function renderCalendarEvents(){
+    $(document).on("click", ".delete-btn", function (event) {
+        let id = event.target.id
         $.ajax({
-            url: "/api/events",
-            method: "GET"
-        }).then(function (data) {
-            var myEvents = [];
+            url: "/api/events/" + id,
+            method: "DELETE"
+        }).then(() => {
+            renderAllSchedules();
+        })
+    });
 
-            for(let i = 0; i < data.length; i++){
-                let name = data[i].name;
-                let startTime = data[i].startTime;
-                let endTime = data[i].endTime;
-                
-                let dayObject = {
-                    title: `${name} ${startTime} - ${endTime}`,
-                    start: data[i].startDate,
-                    end: data[i].endDate,
-                    color: data[i].color
-                }
+    $(document).on("click", "#cancel-add", clearAdd)
 
-                myEvents.push(dayObject);
-
-            }
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid'],
-                defaultView: 'dayGridMonth',
-                defaultDate: '2020-04-07',
-                header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: myEvents,
-                editable: true
-              });
-            calendar.render();
-        });
+    function clearAdd(){
+        $("#new-name").val("");
     }
 
-    renderCalendarEvents();
-
     function clearText() {
-        $("#new-name").val("");
         $("#start-date").val("");
         $("#end-date").val("");
         $("#start-time").val("");
         $("#end-time").val("");
     }
 
-    function renderAllEmployees(){
+    function renderEmployeeSelects(){
         $.ajax({
             url: "/api/employee",
             method: "GET"
@@ -129,7 +104,6 @@ $(document).ready(function () {
                 <td>${startDate} ${startTime}</td>
                 <td>${endDate} ${endTime}</td>
                 <td class="right-align">
-                <button id="edit" class="btn-custom waves-effect waves-light btn-small">Edit</button>
                 <button id="${id}" class="delete-btn btn-custom waves-effect waves-light btn-small">Delete</button>
                 </td>
                 </tr>`)
@@ -137,47 +111,43 @@ $(document).ready(function () {
             }
         })
     };
-/*
-    $(document).on("click", "#edit", function (event) {
-        let selected = event.target.id
-        
-        $.ajax({
-            url: "/api/events/",
-            method: "PUT",
-            data: ({
-                id: selected,
-                name: true
-            })
-        }).then(function () {
-            renderAllSchedules()
-        })
-    });
-*/
-    $(document).on("click", ".delete-btn", function (event) {
-        let id = event.target.id
-        $.ajax({
-            url: "/api/events/" + id,
-            method: "DELETE"
-        }).then(() => {
-            renderAllSchedules();
-        })
-    });
 
-    
-/*
-    function renderCalenderEvents() {
+    function renderAllEmployees() {
         $.ajax({
-            url: "/api/events",
+            url: "/api/employee",
             method: "GET"
         }).then(function (data) {
-            console.log(data)
-        });
-    }
-*/
+
+            $("#tbody-edit").empty();
+
+            for (let i = 0; i < data.length; i++) {
+                let id = data[i].id;
+                let name = data[i].name;
+                
+                $(`<tr>
+                <td>${name}</td>
+                <td class="right-align">
+                <button id="${id}" class="delete-Edt btn-custom waves-effect waves-light btn-small">Delete</button>
+                </td>
+                </tr>`)
+                .appendTo("#tbody-edit")
+            }
+        })
+    };
+
+    $(document).on("click", ".delete-Edt", function (event) {
+        let id = event.target.id
+        $.ajax({
+            url: "/api/employee/" + id,
+            method: "DELETE"
+        }).then(() => {
+            renderAllEmployees();
+        })
+    });
+
     //Call functions on page load
     renderAllSchedules();
-    renderAllEmployees();
-    //renderCalenderEvents();
+    renderEmployeeSelects();
+    renderAllEmployees()
     
-
 }); //End of Document load Function

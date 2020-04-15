@@ -1,10 +1,10 @@
 <table class="all-employees">
     <thead>
         <tr>
-            <td>Name</td>
-            <td>Start time</td>
-            <td>End Time</td>
-            <td></td>
+            <th>Name</th>
+            <th>Start Date/Time</th>
+            <th>End Date/Time</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -12,3 +12,8 @@
         
     </tbody>
 </table>
+
+<script>
+    var headerEl = document.getElementById('header')
+    headerEl.textContent = "Schedule List";
+</script>

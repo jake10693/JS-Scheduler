@@ -53,6 +53,9 @@ module.exports = function (app) {
     res.render(path.join(__dirname, "../views/new-schedule.handlebars"));
   });
 
+  app.get("/new-schedule", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/new-schedule.handlebars"));
+  });
 
 };
 

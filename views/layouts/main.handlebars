@@ -15,7 +15,7 @@
 <body>
     <div class="grid-container">
         <header class="header">
-            <h5 class="header--text">Monthly Schedule</h5>
+            <h5 class="header--text" id="header">Monthly Schedule</h5>
             <a href="/logout">Sign Out <i class="fas fa-sign-out-alt"></i></a>
         </header>
 
@@ -34,7 +34,7 @@
                             <li class="menu-link"><a href="/index"><i class="fas fa-angle-right"></i>
                                     Calendar</a></li>
                             <li class="menu-link"><a href="/all-employees"><i class="fas fa-angle-right"></i>
-                                    All Schedules</a></li>
+                                    Schedule List</a></li>
                             <li class="menu-link"><a href="/new-schedule"><i class="fas fa-angle-right"></i>
                                     New Schedule</a></li>
                         </ul>
@@ -47,9 +47,9 @@
                             <li class="menu-link" data-target="addNewModal"><a class="modal-trigger"
                                     href="#addNewModal"><i class="fas fa-angle-right" id="add-new"></i> New Employee</a>
                             </li>
-                            <li class="menu-link"><a href="/all-employees"><i class="fas fa-angle-right"
+                            <li class="menu-link"><a href="/edit-employees"><i class="fas fa-angle-right"
                                         id="view-all"></i> View
-                                    All</a></li>
+                                    All Employees</a></li>
                         </ul>
                     </div>
                 </li>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-1">cancel</button>
+                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-add">cancel</button>
                     <button class="btn btn-custom waves-effect waves-light modal-close" id="save-empl">save &
                         close</button>
                 </div>

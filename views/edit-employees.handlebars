@@ -1,17 +1,17 @@
 <table class="edit-employees">
     <thead>
         <tr>
-            <td>Assigned ID</td>
-            <td>Name</td>
-            <td></td>
+            <th>Name</th>
+            <th></th>
         </tr>
     </thead>
 
-    <tbody class="tbody-edit">
-        <tr>
-            <td>ERROR</td>
-            <td>ERROR</td>
-            <td>ERROR</td>
-        </tr>
+    <tbody id="tbody-edit">
+    
     </tbody>
 </table>
+
+<script>
+    var headerEl = document.getElementById('header')
+    headerEl.textContent = "Employees List";
+</script>
