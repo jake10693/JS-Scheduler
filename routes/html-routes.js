@@ -13,7 +13,7 @@ module.exports = function (app) {
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
-  
+
   app.post("/", function (req, res) {
     res.send("posted to route")
   })
@@ -28,7 +28,7 @@ module.exports = function (app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
- 
+
 
   app.get("/profile", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/profile.handlebars"));
@@ -40,7 +40,7 @@ module.exports = function (app) {
   app.get("/main", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/layouts/main.handlebars"));
   });
-  
+
   app.get("/index", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/index.handlebars"));
   });
@@ -50,6 +50,9 @@ module.exports = function (app) {
   });
 
   app.get("/new-employee", isAuthenticated, function (req, res) {
+    res.render(path.join(__dirname, "../views/new-schedule.handlebars"));
+  });
+  app.get("/new-schedule", isAuthenticated, function (req, res) {
     res.render(path.join(__dirname, "../views/new-schedule.handlebars"));
   });
 

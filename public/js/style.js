@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   $('.modal').modal();
   $('select').formSelect();
-  $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+  $('.datepicker').datepicker({ format: 'yyyy-mm-dd' });
   $('.timepicker').timepicker();
 });
 

@@ -107,10 +107,10 @@ module.exports = function (app) {
       res.json(dbEvent);
     })
   });
-  
+
   app.post("/api/events", function (req, res) {
     console.log(req.body)
-    const event = {    
+    const event = {
       name: req.body.name,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
@@ -155,7 +155,7 @@ module.exports = function (app) {
       res.json(dbEvent)
     })
   });
-  
+
   app.get("/api/events/:id", function (req, res) {
     db.events.findOne({
       where: {
