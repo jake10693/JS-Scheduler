@@ -3,19 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const collapsible = document.querySelectorAll('.collapsible');
   const collapsibleInstances = M.Collapsible.init(collapsible, 300);
 
-  const modal = document.querySelectorAll('.modal');
-  const modalInstances = M.Modal.init(modal, 300);
-
-  const select = document.querySelectorAll('select');
-  const selectInstances = M.FormSelect.init(select, 200);
-
-
-  $('.datepicker').datepicker();
+  $('.modal').modal();
+  $('select').formSelect();
+  $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+  $('.timepicker').timepicker();
   //Calender JS
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: [  'dayGrid', 'timeGrid', 'list' ],
+    plugins: ['dayGrid'],
     defaultView: 'dayGridMonth',
     defaultDate: '2020-04-07',
     header: {
@@ -41,12 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
         title: "Employee One 9AM - 10PM",
         start: "2020-04-14",
         end: "2020-04-16",
-        color: "yellow",
+        color: "",
       }
     ],
     editable: true
   });
-
-  calendar.render();
+    calendar.render();
 });
 

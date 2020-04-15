@@ -110,10 +110,13 @@ module.exports = function (app) {
   
   app.post("/api/events", function (req, res) {
     console.log(req.body)
-    const event = {
+    const event = {    
       name: req.body.name,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
       startTime: req.body.startTime,
-      endTime: req.body.endTime
+      endTime: req.body.endTime,
+      color: req.body.color
     }
     db.events.create(event)
       .then(function () {

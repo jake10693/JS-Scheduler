@@ -31,10 +31,12 @@
                     <div class="collapsible-header"><i class="menu-icon fas fa-calendar-week"></i>Schedule</div>
                     <div class="collapsible-body">
                         <ul>
-                            <li class="menu-link"><a href="/members"><i class="fas fa-angle-right"></i> View
+                            <li class="menu-link"><a href="/members"><i class="fas fa-angle-right"></i>
                                     Calendar</a></li>
-                            <li class="menu-link" data-target="addNewEvent"><a class="modal-trigger"
-                                    href="#addNewEvent"><i class="fas fa-angle-right"></i> Add New</a></li>
+                            <li class="menu-link"><a href="/all-employees"><i class="fas fa-angle-right"></i>
+                                    All Schedules</a></li>
+                            <li class="menu-link"><a href="/new-schedule"><i class="fas fa-angle-right"></i>
+                                    New Schedule</a></li>
                         </ul>
                     </div>
                 </li>
@@ -43,8 +45,10 @@
                     <div class="collapsible-body">
                         <ul>
                             <li class="menu-link" data-target="addNewModal"><a class="modal-trigger"
-                                    href="#addNewModal"><i class="fas fa-angle-right" id="add-new"></i> Add New</a></li>
-                            <li class="menu-link"><a href="/all-employees"><i class="fas fa-angle-right" id="view-all"></i> View
+                                    href="#addNewModal"><i class="fas fa-angle-right" id="add-new"></i> New Employee</a>
+                            </li>
+                            <li class="menu-link"><a href="/all-employees"><i class="fas fa-angle-right"
+                                        id="view-all"></i> View
                                     All</a></li>
                         </ul>
                     </div>
@@ -69,70 +73,23 @@
             <!-- Add a new employee-->
             <div id="addNewModal" class="modal">
                 <div class="modal-content">
-                    <h4>New Employee</h4>
-                    <label for="newName">Name<input type="text" id="newName"></label>
-                </div>
-                <div class="modal-footer">
-                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-1">cancel</button>
-                    <button class="btn btn-custom waves-effect waves-light modal-close" id="save-1">save & close</button>
-                </div>
-            </div>
-
-            <!-- Add an existing employee to schedule-->
-            <div id="addNewEvent" class="modal">
-                <div class="modal-content">
-                    <h4>New Schedule</h4>
-
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="input-field col s12">
-                                <select id="employee-select">
-                                    <option value="" selected>Select an employee</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                </select>
-                                <label>Employee</label>
-                            </div>
-                        </div>
-                        <div class="col s6">
-                            <div class="input-field col s12">
-                                <select id="start-time">
-                                    <option value="" selected>Start</option>
-                                    <option value="7:00 am">7:00 am</option>
-                                    <option value="8:00 am">8:00 am</option>
-                                    <option value="9:00 am">9:00 am</option>
-                                    <option value="10:00 am">10:00 am</option>
-                                    <option value="11:00am">11:00 am</option>
-                                    <option value="12:00pm">12:00 pm</option>
-                                </select>
-                                <label>Start Date/Time</label>
-                            </div>
-                        </div>
-                        <div class="col s6">
-                            <div class="input-field col s12">
-                                <select id="end-time">
-                                    <option value="" selected>End</option>
-                                    <option value="3:00 pm">3:00 pm</option>
-                                    <option value="4:00 pm">4:00 pm</option>
-                                    <option value="5:00 pm">5:00 pm</option>
-                                    <option value="6:00 pm">6:00 pm</option>
-                                    <option value="7:00 pm">7:00 pm</option>
-                                    <option value="8:00 pm">8:00 pm</option>
-                                </select>
-                                <label>End Date/Time</label>
-                            </div>
-                        </div>
+                    <div class="col s12">
+                        <h4>New Employee</h4>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" id="new-name">
+                        <label for="newName">Name</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-2">cancel</button>
-                    <button class="btn btn-custom waves-effect waves-light modal-close" id="save-2">save & close</button>
+                    <button class="waves-effect waves-teal btn-flat modal-close" id="cancel-1">cancel</button>
+                    <button class="btn btn-custom waves-effect waves-light modal-close" id="save-empl">save &
+                        close</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src='fullcalendar/core/main.js'></script>
     <script src='fullcalendar/daygrid/main.js'></script>
     <script src="./js/materialize.js"></script>
