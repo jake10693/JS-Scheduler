@@ -85,7 +85,7 @@ $(document).ready(function () {
     renderCalendarEvents();
 
     function clearText() {
-        $("#newName").val("");
+        $("#new-name").val("");
         $("#start-date").val("");
         $("#end-date").val("");
         $("#start-time").val("");
