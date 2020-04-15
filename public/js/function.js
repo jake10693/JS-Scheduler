@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
 
     $("#save-sched").click(function () {
-        let employeeSelect = $("#employee-select option:selected").val()
+        let employeeSelect = $("#employee-select option:selected").text()
         let startDate = $("#start-date").val()
         let endDate = $("#end-date").val()
         let startTime = $("#start-time").val()
@@ -40,7 +40,6 @@ $(document).ready(function () {
         }).then(function (data) {
             clearText();
             renderAllSchedules();
-            renderCalenderEvents();
         });
     });
 
@@ -77,20 +76,21 @@ $(document).ready(function () {
     
             for (let i = 0; i < data.length; i++) {
                 let name = data[i].name;
-                $(`<option value=${name}>${name}</option>`).appendTo('#employee-select')
+                $(`<option value="${name}">${name}</option>`).appendTo('#employee-select')
             }
             $("#employee-select").formSelect();
         });
     }
 
     function renderAllSchedules() {
+        
         $.ajax({
             url: "/api/events",
             method: "GET"
         }).then(function (data) {
 
             $(".tbody").empty();
-
+            
             for (let i = 0; i < data.length; i++) {
                 let id = data[i].id;
                 let name = data[i].name;
