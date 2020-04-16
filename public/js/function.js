@@ -1,5 +1,7 @@
 $(document).ready(function () {
    
+    var calendarEl = document.getElementById('calendar');
+
     $("#save-empl").click(function () {
         
         var newName = $("#new-name").val();
@@ -11,15 +13,13 @@ $(document).ready(function () {
                 name: newName
             }
         }).then(function (data) {
-            clearAdd();
+            clearText();
             renderAllSchedules();
-            renderEmployeeSelects();
-            renderAllEmployees();
         });
     });
 
     $("#save-sched").click(function () {
-        let employeeSelect = $("#employee-select option:selected").text()
+        let employeeSelect = $("#employee-select option:selected").val()
         let startDate = $("#start-date").val()
         let endDate = $("#end-date").val()
         let startTime = $("#start-time").val()
@@ -40,33 +40,59 @@ $(document).ready(function () {
         }).then(function (data) {
             clearText();
             renderAllSchedules();
+            renderCalenderEvents();
         });
     });
 
-    $(document).on("click", ".delete-btn", function (event) {
-        let id = event.target.id
+    function renderCalendarEvents(){
         $.ajax({
-            url: "/api/events/" + id,
-            method: "DELETE"
-        }).then(() => {
-            renderAllSchedules();
-        })
-    });
+            url: "/api/events",
+            method: "GET"
+        }).then(function (data) {
+            var myEvents = [];
 
-    $(document).on("click", "#cancel-add", clearAdd)
+            for(let i = 0; i < data.length; i++){
+                let name = data[i].name;
+                let startTime = data[i].startTime;
+                let endTime = data[i].endTime;
+                
+                let dayObject = {
+                    title: `${name} ${startTime} - ${endTime}`,
+                    start: data[i].startDate,
+                    end: data[i].endDate,
+                    color: data[i].color
+                }
 
-    function clearAdd(){
-        $("#new-name").val("");
+                myEvents.push(dayObject);
+
+            }
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                defaultView: 'dayGridMonth',
+                defaultDate: '2020-04-07',
+                header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: myEvents,
+                editable: true
+              });
+            calendar.render();
+        });
     }
 
+    renderCalendarEvents();
+
     function clearText() {
+        $("#new-name").val("");
         $("#start-date").val("");
         $("#end-date").val("");
         $("#start-time").val("");
         $("#end-time").val("");
     }
 
-    function renderEmployeeSelects(){
+    function renderAllEmployees(){
         $.ajax({
             url: "/api/employee",
             method: "GET"
@@ -76,21 +102,22 @@ $(document).ready(function () {
     
             for (let i = 0; i < data.length; i++) {
                 let name = data[i].name;
-                $(`<option value="${name}">${name}</option>`).appendTo('#employee-select')
+                $(`<option value=${name}>${name}</option>`).appendTo('#employee-select')
             }
             $("#employee-select").formSelect();
         });
     }
+    
+    
 
     function renderAllSchedules() {
-        
         $.ajax({
             url: "/api/events",
             method: "GET"
         }).then(function (data) {
 
             $(".tbody").empty();
-            
+
             for (let i = 0; i < data.length; i++) {
                 let id = data[i].id;
                 let name = data[i].name;
@@ -104,6 +131,7 @@ $(document).ready(function () {
                 <td>${startDate} ${startTime}</td>
                 <td>${endDate} ${endTime}</td>
                 <td class="right-align">
+                <button id="edit" class="btn-custom waves-effect waves-light btn-small">Edit</button>
                 <button id="${id}" class="delete-btn btn-custom waves-effect waves-light btn-small">Delete</button>
                 </td>
                 </tr>`)
@@ -111,43 +139,67 @@ $(document).ready(function () {
             }
         })
     };
-
-    function renderAllEmployees() {
+/*
+    $(document).on("click", "#edit", function (event) {
+        let selected = event.target.id
+        
         $.ajax({
-            url: "/api/employee",
-            method: "GET"
-        }).then(function (data) {
-
-            $("#tbody-edit").empty();
-
-            for (let i = 0; i < data.length; i++) {
-                let id = data[i].id;
-                let name = data[i].name;
-                
-                $(`<tr>
-                <td>${name}</td>
-                <td class="right-align">
-                <button id="${id}" class="delete-Edt btn-custom waves-effect waves-light btn-small">Delete</button>
-                </td>
-                </tr>`)
-                .appendTo("#tbody-edit")
-            }
+            url: "/api/events/",
+            method: "PUT",
+            data: ({
+                id: selected,
+                name: true
+            })
+        }).then(function () {
+            renderAllSchedules()
         })
-    };
-
-    $(document).on("click", ".delete-Edt", function (event) {
+    });
+*/
+    $(document).on("click", ".delete-btn", function (event) {
         let id = event.target.id
         $.ajax({
-            url: "/api/employee/" + id,
+            url: "/api/events/" + id,
             method: "DELETE"
         }).then(() => {
-            renderAllEmployees();
+            renderAllSchedules();
         })
     });
 
-    //Call functions on page load
-    renderAllSchedules();
-    renderEmployeeSelects();
-    renderAllEmployees()
     
+/*
+    function renderCalenderEvents() {
+        $.ajax({
+            url: "/api/events",
+            method: "GET"
+        }).then(function (data) {
+            console.log(data)
+        });
+    }
+*/
+    function checkForm() {
+        var oldP = document.getElementById("oldP").value;
+        var newP = document.getElementById("newP").value;
+        var confirmP = document.getElementById("confirmP").value;
+
+        if (oldP != "" && newP != "" && confirmP != "") {
+            if (oldP != newP) {
+                if (newP == confirmP) {
+                    return true;
+                } else {
+                    alert("Confirm password is not same as you new password.");
+                    return false;
+                }
+            } else {
+                alert(" This Is Your Old Password,Please Provide A New Password");
+                return false;
+            }
+        } 
+    }
+//Call functions on page load
+    renderAllSchedules();
+    renderAllEmployees();
+    //renderCalenderEvents();
+    checkForm();
+    
+
 }); //End of Document load Function
